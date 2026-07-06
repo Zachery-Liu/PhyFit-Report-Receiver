@@ -1,0 +1,284 @@
+:root {
+  color-scheme: light;
+  --bg: #f3f7f6;
+  --panel: #ffffff;
+  --ink: #1c2522;
+  --muted: #66736f;
+  --line: #d9e2df;
+  --accent: #12786c;
+  --accent-strong: #075f55;
+  --warn: #9a5b00;
+  --danger: #a73333;
+  --shadow: 0 16px 40px rgba(26, 46, 41, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.app-shell {
+  width: min(920px, 100%);
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.eyebrow,
+.label {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 0;
+  font-size: clamp(2rem, 8vw, 3.3rem);
+  line-height: 1.05;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+.badge,
+.score-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #dff1ec;
+  color: var(--accent-strong);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.actions.wrap {
+  flex-wrap: wrap;
+}
+
+button {
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+  padding: 10px 14px;
+  font-weight: 700;
+}
+
+button.primary {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+.privacy,
+.message,
+.missing {
+  color: var(--muted);
+}
+
+.message {
+  min-height: 28px;
+  margin: 14px 0 0;
+}
+
+.message.error {
+  color: var(--danger);
+}
+
+.message.warn {
+  color: var(--warn);
+}
+
+.camera-frame {
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 8px;
+  background: #111;
+}
+
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.receive-grid,
+.summary-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.receive-grid > div,
+.summary-list > div {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.receive-grid strong,
+.summary-list dd {
+  display: block;
+  overflow-wrap: anywhere;
+  margin: 4px 0 0;
+  font-weight: 800;
+}
+
+.summary-list dt {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.report-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 420px;
+}
+
+th,
+td {
+  padding: 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+
+tr:last-child td {
+  border-bottom: 0;
+}
+
+.hint-block {
+  margin-top: 18px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.chip {
+  border-radius: 999px;
+  background: #eef4f2;
+  padding: 6px 10px;
+}
+
+.report-text {
+  margin-top: 18px;
+  padding: 16px;
+  border-radius: 8px;
+  background: #f7faf9;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.file-drop {
+  display: grid;
+  place-items: center;
+  min-height: 150px;
+  border: 2px dashed var(--line);
+  border-radius: 8px;
+  background: #f8fbfa;
+  color: var(--accent-strong);
+  font-weight: 800;
+}
+
+.file-drop input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+@media (max-width: 680px) {
+  .app-shell {
+    padding: 14px;
+  }
+
+  .topbar,
+  .report-heading,
+  .actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .receive-grid,
+  .summary-list {
+    grid-template-columns: 1fr;
+  }
+
+  button {
+    width: 100%;
+  }
+}
