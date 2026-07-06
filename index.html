@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PhyFit 报告接收</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">PhyFit</p>
+        <h1>报告接收</h1>
+      </div>
+      <span id="stateBadge" class="badge">待接收</span>
+    </header>
+
+    <section id="introView" class="panel intro-view">
+      <h2>扫码接收训练报告</h2>
+      <p>手机对准飞腾派屏幕上的动态二维码，网页会自动收集分片并还原报告。</p>
+      <div class="actions">
+        <button id="startScanBtn" class="primary" type="button">开始扫码</button>
+        <button id="showImportBtn" type="button">导入报告图片</button>
+      </div>
+      <p class="privacy">报告数据仅来自扫码或本地文件，不会上传服务器。</p>
+    </section>
+
+    <section id="scanView" class="panel scan-view hidden">
+      <div class="camera-frame">
+        <video id="cameraPreview" playsinline muted></video>
+      </div>
+      <div class="receive-grid">
+        <div>
+          <span class="label">接收状态</span>
+          <strong id="scanStatus">等待二维码</strong>
+        </div>
+        <div>
+          <span class="label">已接收</span>
+          <strong id="receivedCount">0 / 0</strong>
+        </div>
+        <div>
+          <span class="label">报告 ID</span>
+          <strong id="reportIdText">-</strong>
+        </div>
+      </div>
+      <p id="missingFrames" class="missing">缺失：-</p>
+      <div class="actions">
+        <button id="resetScanBtn" type="button">重新开始接收</button>
+        <button id="backIntroBtn" type="button">返回</button>
+      </div>
+    </section>
+
+    <section id="reportView" class="panel report-view hidden">
+      <div class="report-heading">
+        <div>
+          <span class="label">训练报告</span>
+          <h2 id="reportTitle">-</h2>
+        </div>
+        <span id="reportScore" class="score-pill">-</span>
+      </div>
+
+      <dl class="summary-list">
+        <div><dt>创建时间</dt><dd id="createdAtText">-</dd></div>
+        <div><dt>训练组数</dt><dd id="setTargetText">-</dd></div>
+        <div><dt>报告 ID</dt><dd id="reportReadyId">-</dd></div>
+      </dl>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>组序</th>
+              <th>次数</th>
+              <th>耗时</th>
+              <th>评分</th>
+            </tr>
+          </thead>
+          <tbody id="setsBody"></tbody>
+        </table>
+      </div>
+
+      <div class="hint-block">
+        <span class="label">常见提示</span>
+        <div id="hintsList" class="chips"></div>
+      </div>
+
+      <article id="reportText" class="report-text"></article>
+
+      <div class="actions wrap">
+        <button id="copyReportBtn" class="primary" type="button">复制报告文本</button>
+        <button id="downloadJsonBtn" type="button">下载 JSON</button>
+        <button id="exportPngBtn" type="button">导出报告图片</button>
+        <button id="newScanBtn" type="button">继续扫码新报告</button>
+      </div>
+      <p class="privacy">报告图片包含可恢复的训练报告数据。分享前请确认内容可公开，并保存原始 PNG 文件。</p>
+    </section>
+
+    <section id="importView" class="panel import-view hidden">
+      <h2>导入报告图片</h2>
+      <p>仅保证从本页面导出的原始 PNG 可恢复；截图、压缩图或转成 JPEG 后可能丢失归档数据。</p>
+      <label class="file-drop">
+        <input id="imageFileInput" type="file" accept="image/png">
+        <span>选择 PNG 报告图片</span>
+      </label>
+      <div class="actions">
+        <button id="importBackBtn" type="button">返回</button>
+      </div>
+    </section>
+
+    <p id="messageBox" class="message" role="status"></p>
+  </main>
+</body>
+</html>
